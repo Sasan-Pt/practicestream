@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import HeaderMenu from "./component/headerMenu";
 
 export const metadata: Metadata = {
   title: "i made this stream",
@@ -14,7 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="grid grid-cols-[100px_1fr_100px] bg-black  font-[family-name:var(--font-geist-sans)]">
+      <body className="grid grid-cols-[4%_9fr_4%] bg-black  font-[family-name:var(--font-geist-sans)]">
+        <HeaderMenu />
         {children}
       </body>
     </html>
