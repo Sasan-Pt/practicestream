@@ -2,6 +2,7 @@ import React from "react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Kurologo from "../../../public/Imagebannerlogo.png";
+import HeaderSearchBox from "./headerSearchBox";
 
 const HeaderMenu = () => {
   return (
@@ -10,6 +11,7 @@ const HeaderMenu = () => {
       <div className={"h-10 w-14"}>
         <Image src={Kurologo} />
       </div>
+      <HeaderSearchBox />
     </div>
   );
 };
