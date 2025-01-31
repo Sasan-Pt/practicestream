@@ -1,3 +1,4 @@
+"use client";
 import {
   Carousel,
   CarouselContent,
@@ -5,7 +6,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
+import Kurologo from "../../../public/Imagebannerlogo.png";
+import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay";
 const CarouselCn = () => {
   return (
     <Carousel
@@ -13,9 +16,17 @@ const CarouselCn = () => {
         align: "start",
         loop: true,
       }}
+      className="mx-12"
+      plugins={[
+        Autoplay({
+          delay: 2000,
+        }),
+      ]}
     >
       <CarouselContent>
-        <CarouselItem>...</CarouselItem>
+        <CarouselItem>
+          <Image src={Kurologo} alt="Loading..." />
+        </CarouselItem>
         <CarouselItem>...</CarouselItem>
         <CarouselItem>...</CarouselItem>
       </CarouselContent>
