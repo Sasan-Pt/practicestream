@@ -4,11 +4,12 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselApi,
+  CarouselPrevious,
+  CarouselNext,
 } from "@/components/ui/carousel";
-import Image from "next/image";
-import Kurologo from "../../../../public/Imagebannerlogo.png";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
+import ReleaseSchedule from "./releaseSchedule";
 
 const SplitCarousel = () => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
@@ -40,36 +41,30 @@ const SplitCarousel = () => {
     scrollToCurrentDate();
   }, [currentDate, carouselApi]);
 
-  const scrollToIndex = (index: number) => {
-    const today = Number(dayjs().format("D"));
-    carouselApi?.scrollTo(today);
-  };
-
   return (
-    <div>
-      <button onClick={() => scrollToIndex(2)}>click me</button>
-      <Carousel setApi={setCarouselApi}>
-        <CarouselContent className="gap-x-4">
-          <CarouselItem className="basis-1/3 bg-white">
-            <Image src={Kurologo} alt="Loading..." />
-          </CarouselItem>
-          <CarouselItem className="basis-1/3 bg-white">
-            <Image src={Kurologo} alt="Loading..." />
-          </CarouselItem>
-          <CarouselItem className="basis-1/3 bg-white">
-            <Image src={Kurologo} alt="Loading..." />
-          </CarouselItem>
-          <CarouselItem className="basis-1/3">
-            <Image src={Kurologo} alt="Loading..." />
-          </CarouselItem>
-          <CarouselItem className="basis-1/3 bg-white">
-            <Image src={Kurologo} alt="Loading..." />
-          </CarouselItem>
-          <CarouselItem className="basis-1/3 bg-white">
-            <Image src={Kurologo} alt="Loading..." />
-          </CarouselItem>
+    <div className="w-[90vw] py-4 ml-2">
+      <Carousel setApi={setCarouselApi} className="w-[90vw]">
+        <CarouselContent className="gap-x-4 !h-20">
+          {daysInMonth &&
+            daysInMonth.map((days) => {
+              return (
+                <CarouselItem
+                  className="basis-1/4 bg-[#303030] text-white !pl-0 "
+                  key={`splitCarousel${days.day}`}
+                >
+                  <div className="flex justify-center items-center flex-col">
+                    <div>{days.month}</div>
+                    <div>{days.weekday}</div>
+                    <div>{days.day}</div>
+                  </div>
+                </CarouselItem>
+              );
+            })}
         </CarouselContent>
+        <CarouselPrevious className="ml-10 !h-20 !rounded-none bg-[#303030]" />
+        <CarouselNext className=" mr-[45px] !h-20 !rounded-none bg-[#303030]" />
       </Carousel>
+      
     </div>
   );
 };
