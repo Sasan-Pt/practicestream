@@ -42,14 +42,14 @@ const SplitCarousel = () => {
   }, [currentDate, carouselApi]);
 
   return (
-    <div className="py-4 ml-2">
-      <Carousel setApi={setCarouselApi} className="w-[87vw]">
+    <div className="py-4  relative">
+      <Carousel setApi={setCarouselApi}>
         <CarouselContent className="gap-x-4 !h-20">
           {daysInMonth &&
             daysInMonth.map((days) => {
               return (
                 <CarouselItem
-                  className="basis-1/4 bg-[#303030] text-white !pl-0 "
+                  className="basis-1/4 bg-[#303030] text-white !pl-0"
                   key={`splitCarousel${days.day}`}
                 >
                   <div className="flex justify-center items-center flex-col">
@@ -61,8 +61,8 @@ const SplitCarousel = () => {
               );
             })}
         </CarouselContent>
-        <CarouselPrevious className="ml-10 !h-20 !rounded-none bg-[#303030]" />
-        <CarouselNext className=" mr-[10vw] !h-20 !rounded-none bg-[#303030]" />
+        <CarouselPrevious className="!h-20 !rounded-none bg-[#303030] absolute left-0" />
+        <CarouselNext className="!h-20 !rounded-none bg-[#303030] absolute right-0" />
       </Carousel>
     </div>
   );

@@ -8,7 +8,7 @@ const HeaderMenu = () => {
   return (
     <div className={"col-start-2 flex gap-x-4 bg-black pt-2"}>
       <Bars3Icon className={"h-10 w-14 text-white"} />
-      <div className={" w-10 "}>
+      <div className={" w-10 min-w-[34px]"}>
         <Image src={Kurologo} alt="Loading..." />
       </div>
       <HeaderSearchBox />
