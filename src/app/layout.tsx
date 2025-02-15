@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import HeaderMenu from "./component/headerMenu";
+import Footer from "./component/footer/footer";
 
 export const metadata: Metadata = {
   title: "i made this stream",
@@ -14,9 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="grid grid-cols-[4%_9fr_4%] bg-black  font-[family-name:var(--font-geist-sans)]">
+      <body className="grid grid-cols-[4%_92%_4%] bg-black  font-[family-name:var(--font-geist-sans)]">
         <HeaderMenu />
         {children}
+        <Footer />
       </body>
     </html>
   );

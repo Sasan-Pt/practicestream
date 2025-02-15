@@ -3,7 +3,7 @@ import SplitCarousel from "./splitCarousel";
 
 const Schedule = () => {
   return (
-    <div className="bg-[#1c1c1c]  mt-4 w-[89vw]">
+    <div className="bg-[#1c1c1c]  mt-4  sm:col-start-1">
       <div>Estimated Schedule</div>
       <SplitCarousel />
       <ReleaseSchedule />

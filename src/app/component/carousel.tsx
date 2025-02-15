@@ -16,7 +16,7 @@ const CarouselCn = () => {
         align: "start",
         loop: true,
       }}
-      className="mx-12"
+      className="mx-12 sm:col-start-1"
       plugins={[
         Autoplay({
           delay: 2000,
