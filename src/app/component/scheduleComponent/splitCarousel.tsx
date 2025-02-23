@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/carousel";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import ReleaseSchedule from "./releaseSchedule";
 
 const SplitCarousel = () => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);

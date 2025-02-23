@@ -17,11 +17,12 @@ const HeaderSearchBox = () => {
   }, 1000);
 
   return (
-    <Command className=" sm:min-w-[400px]">
+    <div className="w-full">
+    <Command className="md:min-w-[300px] md:min-w-[400px] w-full">
       <CommandInput
         placeholder="Type to search..."
         onValueChange={(value) => handleInputChange(value)}
-        className=" sm:min-w-[400px]"
+        className="sm:min-w-[300px] md:min-w-[400px] w-full"
       />
 
       <CommandList>
@@ -37,6 +38,7 @@ const HeaderSearchBox = () => {
         )}
       </CommandList>
     </Command>
+    </div>
   );
 };
 

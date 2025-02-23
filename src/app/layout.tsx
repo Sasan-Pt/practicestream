@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="grid grid-cols-[4%_92%_4%] bg-black  font-[family-name:var(--font-geist-sans)]">
+      <body className="grid grid-cols-[6%_88%_6%]  md:grid-cols-[10%_80%_10%] bg-black  font-[family-name:var(--font-geist-sans)]">
         <HeaderMenu />
         {children}
         <Footer />
