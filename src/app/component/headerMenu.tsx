@@ -1,10 +1,10 @@
 import React from "react";
-import Image from "next/image";
 import Kurologo from "../../../public/Imagebannerlogo.png";
 import HeaderSearchBox from "./headerSearchBox";
 import HeaderAvatar from "./headerAvatar";
 import DropdownMenuShad from "./dropDownMenu/dropDownMenuShad";
 import { Button } from "@/components/ui/button"
+import LazyImage from "./shareComponent/lazyImage";
 
 
 const HeaderMenu = () => {
@@ -17,7 +17,7 @@ const HeaderMenu = () => {
       <div className="flex gap-x-4">
         <DropdownMenuShad />
         <div className={" w-10 min-w-[34px] "}>
-          <Image src={Kurologo} alt="Loading..." />
+          <LazyImage src={Kurologo}  />
         </div>
         <HeaderSearchBox />
       </div>

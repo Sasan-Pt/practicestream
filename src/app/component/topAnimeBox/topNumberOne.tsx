@@ -1,15 +1,14 @@
-import Image from "next/image";
 import Kurologo from "../../../../public/Imagebannerlogo.png";
+import LazyImage from "../shareComponent/lazyImage";
 
 const TopNumberOne = () => {
   return (
     <div className="relative min-h-[200px] overflow-hidden flex items-end shadow-lg">
       <div>
-        <Image
+        <LazyImage
           src={Kurologo}
           alt="topAnime"
           fill
-          className="object-fill z-[1]"
         />
       </div>
       <div className="text-white min-h-[44px]  z-[2] flex pl-4 pb-4">

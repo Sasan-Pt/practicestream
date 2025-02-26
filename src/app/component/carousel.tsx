@@ -7,8 +7,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Kurologo from "../../../public/Imagebannerlogo.png";
-import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
+import LazyImage from "./shareComponent/lazyImage";
 const CarouselCn = () => {
   return (
     <Carousel
@@ -25,7 +25,7 @@ const CarouselCn = () => {
     >
       <CarouselContent>
         <CarouselItem>
-          <Image src={Kurologo} alt="Loading..." />
+          <LazyImage src={Kurologo}/>
         </CarouselItem>
         <CarouselItem>...</CarouselItem>
         <CarouselItem>...</CarouselItem>
