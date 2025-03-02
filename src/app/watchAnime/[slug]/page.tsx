@@ -1,10 +1,9 @@
-'use client'
-import { useParams } from "next/navigation";
+import MediaPlayers from "./components/mediaPlayer";
+
 
 const WatchAnime = () => {
-    const { slug } = useParams();
   return <div className={"col-start-2  mt-12"}>
-    {slug}
+    <MediaPlayers />
     </div>;
 };
 
