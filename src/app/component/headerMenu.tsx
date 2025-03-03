@@ -5,6 +5,7 @@ import HeaderAvatar from "./headerAvatar";
 import DropdownMenuShad from "./dropDownMenu/dropDownMenuShad";
 import { Button } from "@/components/ui/button"
 import LazyImage from "./shareComponent/lazyImage";
+import Link from "next/link";
 
 
 const HeaderMenu = () => {
@@ -16,9 +17,9 @@ const HeaderMenu = () => {
     >
       <div className="flex gap-x-4">
         <DropdownMenuShad />
-        <div className={" w-10 min-w-[34px] "}>
+        <Link href={"/"} className={" w-10 min-w-[34px] "} prefetch={false}>
           <LazyImage src={Kurologo}  />
-        </div>
+        </Link>
         <HeaderSearchBox />
       </div>
       <div className="sm:hidden">

@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ReactScan />
-      <body className="grid grid-cols-[4%_92%_4%]  md:grid-cols-[10%_80%_10%] bg-black  font-[family-name:var(--font-geist-sans)]">
+      <body className="grid grid-cols-[4%_92%_4%]  md:grid-cols-[10%_80%_10%] bg-black  font-[family-name:var(--font-geist-sans)] ">
         <HeaderMenu />
         {children}
         <Footer />
