@@ -12,12 +12,12 @@ import { useEffect, useState } from "react";
 
 const SplitCarousel = () => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
-  const [currentDate, setCurrentDate] = useState(() => {
+  const [currentDate, ] = useState(() => {
     const year = dayjs().year();
     const month = dayjs().month();
     return { year, month };
   });
-  const [daysInMonth, setDaysInMonth] = useState(() => {
+  const [daysInMonth, ] = useState(() => {
     const { year, month } = currentDate;
     const daysInMonth = dayjs(`${year}-${month + 1}-01`).daysInMonth();
     const monthName = dayjs(`${year}-${month + 1}-01`).format("MMMM");

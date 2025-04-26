@@ -8,8 +8,8 @@ const RecentsUpdates = () => {
       <div className="text-white">Recent Updates</div>
       <div className="grid grid-cols-3  gap-x-4  gap-y-4  pt-4">
         {names.map((animeName) => (
-          <Link href={`/watchAnime/${animeName}`} key={animeName} prefetch={false}>
-            <LazyImage src={Kurologo} />
+          <Link href={`/watchAnime/${animeName}`} key={animeName} >
+            <LazyImage src={Kurologo} alt="loading...."/>
             <div className="text-white text-center">{animeName}</div>
           </Link>
         ))}

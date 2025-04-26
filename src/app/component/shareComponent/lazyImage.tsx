@@ -8,7 +8,7 @@ type ImageProps = {
     height?: number;
 }
 const LazyImage = (props:ImageProps) => {
-    const {src, alt, width, height,fill} = props;
+    const {src,fill} = props;
   return <Image src={src} alt="Loading..." loading="lazy"  fill={fill}  />
 };
 
