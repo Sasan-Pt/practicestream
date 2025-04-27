@@ -2,24 +2,34 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { getImagesSlider } from '../api'
-import {  useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
+
+interface ImageData {
+    images: string[];
+    count: number;
+}
 
 const Practice = () => {
-    //const [data, setData] = useState<{first: string, second: string[]} | null>(null)
-    const [loading, setLoading] = useState(false)
+    const { data, isLoading, refetch, isFetching } = useQuery<ImageData>({ 
+        queryKey: ['images'], 
+        queryFn:()=> getImagesSlider(),
+        refetchOnMount: true,
+        staleTime: Infinity, // Data will never be considered stale
+        gcTime: 0 // Remove from cache immediately when unused
+    })
     
-    const {data,refetch,isLoading}=useQuery({ queryKey: ['images'], queryFn: getImagesSlider })
-    
- 
+    if(isLoading){
+        return <div className='bg-red-500 p-4 rounded text-white'>Loading...</div>
+    }
     
     return (
         <div className="flex flex-col gap-4 text-white col-start-2 p-4">
             <div className="flex gap-x-4">
                 <button 
-                    onClick={()=>handleRefetch()}
+                    onClick={() => void refetch()}
                     className="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600"
                 >
-                    {loading ? 'Loading...' : 'first'}
+                    {isFetching ? 'Loading...' : 'Refresh Data'}
                 </button>
                 <input className="text-black px-2"></input>
                 <button className="px-4 py-2 bg-red-500 rounded hover:bg-red-600">delete me</button>
@@ -30,7 +40,7 @@ const Practice = () => {
                 <button 
                     className="px-4 py-2 bg-blue-500 rounded hover:bg-blue-600"
                 >
-                    {loading ? 'Loading...' : 'second'}
+                    {isFetching ? 'Loading...' : 'second'}
                 </button>
             </div>
             
