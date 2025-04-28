@@ -10,3 +10,14 @@ export const getImagesSlider = async () => {
         throw error; // Re-throw the error so React Query can handle it
     }
 }
+
+export const GetPersons = async () => {
+    try {
+        const response = await axios.get("http://localhost:8080/people");
+        console.log(response, 'response');
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        throw error; // Re-throw the error so React Query can handle it
+    }
+}

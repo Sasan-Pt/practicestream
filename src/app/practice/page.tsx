@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import axios from 'axios'
-import { getImagesSlider } from '../api'
+import { getImagesSlider, GetPersons } from '../api'
 import { useQuery } from '@tanstack/react-query'
 
 interface ImageData {
@@ -13,6 +13,14 @@ const Practice = () => {
     const { data, isLoading, refetch, isFetching } = useQuery<ImageData>({ 
         queryKey: ['images'], 
         queryFn:()=> getImagesSlider(),
+        refetchOnMount: true,
+        staleTime: Infinity, // Data will never be considered stale
+        gcTime: 0 // Remove from cache immediately when unused
+    })
+
+        const { data:data2, isLoading:isloading2, refetch:refetch2, isFetching:isFetching2 } = useQuery<ImageData>({ 
+        queryKey: ['Person'], 
+        queryFn:()=> GetPersons(),
         refetchOnMount: true,
         staleTime: Infinity, // Data will never be considered stale
         gcTime: 0 // Remove from cache immediately when unused
