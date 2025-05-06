@@ -1,30 +1,49 @@
 'use client'
 import { useState } from 'react'
 import axios from 'axios'
-import { getImagesSlider, GetPersons } from '../api'
-import { useQuery } from '@tanstack/react-query'
+import { deletePerson, getImagesSlider, GetPersons, updateData } from '../api'
+import { useMutation, useQuery } from '@tanstack/react-query'
 
 interface ImageData {
     images: string[];
     count: number;
 }
+interface ImageData2 {
+    data: {id:string,name:string}[];
+}
+
+
 
 const Practice = () => {
+    
+
+ 
     const { data, isLoading, refetch, isFetching } = useQuery<ImageData>({ 
         queryKey: ['images'], 
         queryFn:()=> getImagesSlider(),
         refetchOnMount: true,
-        staleTime: Infinity, // Data will never be considered stale
-        gcTime: 0 // Remove from cache immediately when unused
+        staleTime: 5000, // Data will never be considered stale
+        gcTime: 6000 // Remove from cache immediately when unused
     })
 
-        const { data:data2, isLoading:isloading2, refetch:refetch2, isFetching:isFetching2 } = useQuery<ImageData>({ 
+        const { data:data2, isLoading:isloading2, refetch:refetch2, isFetching:isFetching2 } = useQuery<ImageData2>({ 
         queryKey: ['Person'], 
         queryFn:()=> GetPersons(),
         refetchOnMount: true,
-        staleTime: Infinity, // Data will never be considered stale
-        gcTime: 0 // Remove from cache immediately when unused
+        staleTime: 5000, // Data will never be considered stale
+        gcTime: 6000 // Remove from cache immediately when unused
     })
+
+
+    const deleteMutation=useMutation({
+        mutationFn:(postId:number)=>deletePerson(postId)
+    })
+
+    const updateMutation=useMutation({
+        mutationFn:()=>updateData()
+    })
+
+
     
     if(isLoading){
         return <div className='bg-red-500 p-4 rounded text-white'>Loading...</div>
@@ -53,11 +72,18 @@ const Practice = () => {
             </div>
             
             {/* Display data when available */}
-            {data && (
+            {/* {data && (
                 <div className="mt-4 p-4 bg-gray-800 rounded">
                     <pre>{JSON.stringify(data, null, 2)}</pre>
                 </div>
             )}
+            {data2 && data2?.data?.map((data) => (
+                <div key={data.id} className="mt-4 p-4 bg-gray-800 rounded">
+                    <pre>{data.name}</pre>
+                    <button onClick={()=>deleteMutation.mutate(Number(data?.id))}>delete it</button>
+                </div>
+            ))} */}
+            <button onClick={()=>updateMutation.mutate()}>add another data</button>
         </div>
     )
 }

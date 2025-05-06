@@ -14,9 +14,29 @@ export const getImagesSlider = async () => {
 export const GetPersons = async () => {
     try {
         const response = await axios.get("http://localhost:8080/people");
-        console.log(response, 'response');
         return response.data;
     } catch (error) {
+        console.error("Error fetching data:", error);
+        throw error; // Re-throw the error so React Query can handle it
+    }
+}
+
+export const deletePerson=async(index:number)=>{
+    try{
+        const response=await axios.delete("http://localhost:8080/people/"+index)
+        return response.data;
+    }catch (error) {
+        console.error("Error fetching data:", error);
+        throw error; // Re-throw the error so React Query can handle it
+    }
+}
+
+export const updateData=async()=>{
+    const staticData={id:"4",name:"shahab"}
+    try{
+        const response=await axios.post("http://localhost:8080/people",staticData)
+        return response.data;
+    }catch (error) {
         console.error("Error fetching data:", error);
         throw error; // Re-throw the error so React Query can handle it
     }
