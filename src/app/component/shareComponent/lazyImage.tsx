@@ -1,15 +1,7 @@
-import Image, { StaticImageData } from "next/image";
+import Image, { ImageProps, StaticImageData } from "next/image";
 
-type ImageProps = {
-    src: StaticImageData;
-    alt?: string;
-    fill?: boolean;
-    width?: number;
-    height?: number;
-}
-const LazyImage = (props:ImageProps) => {
-    const {src,fill} = props;
-  return <Image src={src} alt="Loading..." loading="lazy"  fill={fill}  />
+const LazyImage = (props: ImageProps) => {
+  return <Image loading="lazy" {...props} />;
 };
 
 export default LazyImage;

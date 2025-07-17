@@ -6,32 +6,51 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Kurologo from "../../../public/Imagebannerlogo.png";
 import Autoplay from "embla-carousel-autoplay";
-import LazyImage from "./shareComponent/lazyImage";
+import Image from "next/image";
+import { UseCarouselPic } from "../api/apiHooks/UseCarouselPic";
+
 const CarouselCn = () => {
+  const { data, isLoading, error, isFetching } = UseCarouselPic();
+  if (isLoading || isFetching) {
+    return <div>Loading...</div>;
+  }
   return (
     <Carousel
       opts={{
         align: "start",
         loop: true,
       }}
-      className="mx-12 sm:col-start-1"
+      className=" relative !rounded-lg "
       plugins={[
         Autoplay({
-          delay: 2000,
+          delay: 4000,
         }),
       ]}
     >
-      <CarouselContent>
-        <CarouselItem>
-          <LazyImage src={Kurologo}/>
-        </CarouselItem>
-        <CarouselItem>...</CarouselItem>
-        <CarouselItem>...</CarouselItem>
+      <CarouselContent className="!ml-0">
+        {data?.images?.map((imageUrl: string, index: number) => (
+          <CarouselItem
+            key={imageUrl}
+            className="relative h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[70vh]  !rounded-lg !pl-0"
+          >
+            <Image
+              src={imageUrl}
+              alt={`Slide ${index + 1}`}
+              priority={index === 0}
+              className="object-cover rounded-lg "
+              width={800}
+              height={600}
+              style={{
+                width: "100%",
+                height: "100%",
+              }}
+            />
+          </CarouselItem>
+        ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white" />
+      <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white" />
     </Carousel>
   );
 };

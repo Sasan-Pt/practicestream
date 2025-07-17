@@ -17,16 +17,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-
-      <body className="grid grid-cols-[4%_92%_4%]  md:grid-cols-[10%_80%_10%] bg-black  font-[family-name:var(--font-geist-sans)] ">
-      <QueryProviders  >
-      
-      <ReactScan />
-        <HeaderMenu />
-        {children}
-        <Footer />
-      </QueryProviders>
-
+      <body className="grid grid-cols-[4%_92%_4%]  md:grid-cols-[5%_90%_5%] bg-[#0e0e0e]  font-[family-name:var(--font-geist-sans)] ">
+        <QueryProviders>
+          <ReactScan />
+          <HeaderMenu />
+          {children}
+          <Footer />
+        </QueryProviders>
       </body>
     </html>
   );

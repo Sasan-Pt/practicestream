@@ -7,7 +7,7 @@ body {
 }
 
 nextjs-portal {
-  display:none
+  display: none;
 }
 
 @layer base {
@@ -15,4 +15,3 @@ nextjs-portal {
     --radius: 0.5rem;
   }
 }
-
