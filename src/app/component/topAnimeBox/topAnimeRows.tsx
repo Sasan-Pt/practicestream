@@ -9,7 +9,7 @@ const TopAnimeRows = () => {
       <div className=" border-2 border-white p-2 flex-shrink-0 max-h-[39px] mt-[8px] ">
         1
       </div>
-      <div className="relative h-[60px] w-[46px]">
+      <div className="relative h-[60px] w-[46px] ">
         <LazyImage
           src={data?.images?.[5]}
           fill
