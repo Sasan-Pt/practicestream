@@ -6,6 +6,7 @@ import DropdownMenuShad from "./dropDownMenu/dropDownMenuShad";
 import { Button } from "@/components/ui/button";
 import LazyImage from "./shareComponent/lazyImage";
 import Link from "next/link";
+import { Modal } from "./signIn/modal";
 
 const HeaderMenu = () => {
   return (
@@ -17,7 +18,7 @@ const HeaderMenu = () => {
       <div className="flex gap-x-4 ">
         <DropdownMenuShad />
         <Link href={"/"} className={" w-10 min-w-[34px] "} prefetch={false}>
-          <LazyImage src={Kurologo} />
+          <LazyImage src={Kurologo} alt="loading" />
         </Link>
         <HeaderSearchBox />
       </div>
@@ -25,9 +26,11 @@ const HeaderMenu = () => {
         <HeaderAvatar />
       </div>
       <div className="hidden sm:block">
-        <Button variant="outline" className="min-w-[100px] rounded-full">
-          sign up
-        </Button>
+        <Modal>
+          <Button variant="outline" className="min-w-[100px] rounded-full">
+            sign up
+          </Button>
+        </Modal>
       </div>
     </div>
   );

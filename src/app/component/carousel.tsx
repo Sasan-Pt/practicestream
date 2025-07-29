@@ -9,6 +9,7 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import { UseCarouselPic } from "../api/apiHooks/UseCarouselPic";
+import RibbonOverImage from "./shareComponent/ribbonOverImage";
 
 const CarouselCn = () => {
   const { data, isLoading, error, isFetching } = UseCarouselPic();
@@ -46,6 +47,7 @@ const CarouselCn = () => {
                 height: "100%",
               }}
             />
+            <RibbonOverImage />
           </CarouselItem>
         ))}
       </CarouselContent>
