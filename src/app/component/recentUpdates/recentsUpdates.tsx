@@ -1,10 +1,10 @@
 "use client";
 import Link from "next/link";
 import Kurologo from "../../../public/Imagebannerlogo.png";
-import LazyImage from "./shareComponent/lazyImage";
-import { UseTopAnime } from "../api/apiHooks/useTopAnime";
-import Modal from "./shareComponent/tooltip";
-import Tooltip from "./shareComponent/tooltip";
+import LazyImage from "../shareComponent/lazyImage";
+import { UseTopAnime } from "../../api/apiHooks/useTopAnime";
+import Modal from "../shareComponent/tooltip";
+import Tooltip from "../shareComponent/tooltip";
 const RecentsUpdates = () => {
   const names: Array<string> = [
     "firstone",
@@ -22,7 +22,7 @@ const RecentsUpdates = () => {
         {data?.images &&
           data?.images?.map((images: string) => {
             return (
-              <div className="flex flex-col relative">
+              <div className="flex flex-col relative ">
                 <Link
                   href={`/watchAnime/${images}`}
                   key={images}

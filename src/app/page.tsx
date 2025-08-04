@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import CarouselCn from "./component/carousel";
-import RecentsUpdates from "./component/recentsUpdates";
+import RecentsUpdates from "./component/recentUpdates/recentsUpdates";
 import Schedule from "./component/scheduleComponent/schedule";
 import TopAnimeBox from "./component/topAnimeBox/topAnimeBox";
 
