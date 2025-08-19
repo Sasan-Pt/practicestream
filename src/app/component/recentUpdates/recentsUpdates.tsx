@@ -5,6 +5,7 @@ import LazyImage from "../shareComponent/lazyImage";
 import { UseTopAnime } from "../../api/apiHooks/useTopAnime";
 import Modal from "../shareComponent/tooltip";
 import Tooltip from "../shareComponent/tooltip";
+import MoreDetailWindow from "./moreDetailWindow";
 const RecentsUpdates = () => {
   const names: Array<string> = [
     "firstone",
@@ -21,25 +22,7 @@ const RecentsUpdates = () => {
       <div className="grid grid-cols-3  md:grid-cols-4 lg:grid-cols-5 gap-4 pt-4">
         {data?.images &&
           data?.images?.map((images: string) => {
-            return (
-              <div className="flex flex-col relative ">
-                <Link
-                  href={`/watchAnime/${images}`}
-                  key={images}
-                  className="relative aspect-[2/3] w-full"
-                >
-                  <LazyImage
-                    src={images}
-                    alt="loading...."
-                    fill
-                    sizes="(min-width:1024px) 186px, (min-width:768px) 170px, 154px"
-                    className=" rounded"
-                  />
-                </Link>
-                <div className="text-white text-center">loram</div>
-                <Tooltip />
-              </div>
-            );
+            return <MoreDetailWindow images={images} />;
           })}
       </div>
     </div>
