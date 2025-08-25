@@ -1,8 +1,18 @@
 "use client";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { api } from "../api";
 
-export const UseRecentUploads = () => {
+export interface RecentUploadsinnerDataType {
+  id: number;
+  name: string;
+  summary: string;
+  link: string;
+}
+interface recivedData {
+  recentUploads: Array<RecentUploadsinnerDataType>;
+}
+
+export const UseRecentUploads: () => UseQueryResult<recivedData> = () => {
   return useQuery({
     queryKey: ["recentUploads"],
     queryFn: async () => {
