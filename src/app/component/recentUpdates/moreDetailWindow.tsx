@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import Tooltip from "../shareComponent/tooltip";
 import LazyImage from "../shareComponent/lazyImage";
@@ -7,13 +8,10 @@ import { RecentUploadsinnerDataType } from "@/app/api/apiHooks/useRecentUploads"
 const MoreDetailWindow = (props: RecentUploadsinnerDataType) => {
   const { link, name } = props;
   const newNmes = name.substring(0, name.lastIndexOf("."));
-  const [openMoreDetail, setOpenMoreDetail] = useState(false);
+
   return (
     <div
-      className="flex flex-col relative "
-      onMouseEnter={() => setOpenMoreDetail(true)}
-      onMouseLeave={() => setOpenMoreDetail(false)}
-    >
+      className="flex flex-col relative group">
       <Link
         href={`/watchAnime/${link}`}
         key={link}
@@ -28,7 +26,9 @@ const MoreDetailWindow = (props: RecentUploadsinnerDataType) => {
         />
       </Link>
       <div className="text-white text-center">{newNmes}</div>
-      {openMoreDetail && <Tooltip {...props} />}
+      <div className="hidden lg:group-hover:block ">
+       <Tooltip {...props}/>
+       </div>
     </div>
   );
 };
