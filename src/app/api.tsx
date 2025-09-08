@@ -11,6 +11,15 @@ export const getImagesSlider = async () => {
   }
 };
 
+export const GetSchedule=async(startDate:string,endDate:string)=>{
+  try {
+    const response = await axios.get(`http://localhost:8080/schedule?startDate=${startDate}&endDate=${endDate}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export const GetPersons = async () => {
   try {
     const response = await axios.get("http://localhost:8080/people");
