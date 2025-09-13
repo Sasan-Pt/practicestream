@@ -7,7 +7,7 @@ const ReleaseSchedule = () => {
   console.log(data,"im from hookusage")
   return (
     <div>
-      <div className="border-2 ">something</div>
+      <div className="border-2 ">somesadthing</div>
     </div>
   );
 };
