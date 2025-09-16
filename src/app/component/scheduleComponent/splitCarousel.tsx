@@ -154,6 +154,7 @@ import dayjs from "dayjs";
 import { useEffect, useMemo, useState } from "react";
 import CarouselItems from "./carouselItem";
 import { UseScheduleInfo } from "@/app/api/apiHooks/useScheduleInfo";
+import CarouselcontentMemo from "./carouselcontentMemo";
 
 const SplitCarousel = () => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
@@ -164,7 +165,6 @@ const SplitCarousel = () => {
     return { year: now.year(), month: now.month() };
   }, []);
 
-  // Precompute all days in month
   const daysInMonth = useMemo(() => {
     const days = dayjs(`${year}-${month + 1}-01`).daysInMonth();
     const monthName = dayjs(`${year}-${month + 1}-01`).format("MMMM");
@@ -179,10 +179,8 @@ const SplitCarousel = () => {
     });
   }, [year, month]);
 
-  // Today’s date (number)
   const [todayDate, setTodayDate] = useState(() => Number(dayjs().format("D")));
 
-  // Auto-scroll to today
   useEffect(() => {
     if (carouselApi) {
       carouselApi.scrollTo(todayDate - 1);
@@ -195,7 +193,6 @@ const SplitCarousel = () => {
     endDate: "2025-12-01",
   });
 
-  // Preprocess API data into lookup by "day-weekday-month"
   const scheduleLookup = useMemo(() => {
     if (!data?.data) return {};
 
@@ -212,31 +209,12 @@ const SplitCarousel = () => {
   return (
     <div className="py-4 relative">
       <Carousel setApi={setCarouselApi}>
-        <CarouselContent className="gap-x-4 !h-20">
-          {daysInMonth.map((dayObj) => {
-            const key = `${dayObj.day}-${dayObj.weekday}-${dayObj.month}`;
-            const relatedEvents = scheduleLookup[key] || [];
-
-            console.log(relatedEvents, "relatedEvents");
-            console.log(dayObj, "dayObj");
-            console.log(key, "key");
-
-            return (
-              <CarouselItem key={key}>
-                <CarouselItems
-                  onClick={() => setTodayDate(Number(dayObj.day))}
-                  days={dayObj}
-                  events={relatedEvents} // pass events to child if needed
-                  bgcolor={
-                    Number(dayObj.day) === todayDate
-                      ? "bg-[#5a2e98]"
-                      : "bg-[#303030]"
-                  }
-                />
-              </CarouselItem>
-            );
-          })}
-        </CarouselContent>
+        <CarouselcontentMemo
+          daysInMonth={daysInMonth}
+          scheduleLookup={scheduleLookup}
+          setTodayDate={setTodayDate}
+          todayDate={todayDate}
+        />
         <CarouselPrevious className="!h-20 !rounded-none bg-[#303030] absolute left-0" />
         <CarouselNext className="!h-20 !rounded-none bg-[#303030] absolute right-0" />
       </Carousel>
