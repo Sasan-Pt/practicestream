@@ -2,23 +2,46 @@ import { CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import React, { memo } from "react";
 import CarouselItems from "./carouselItem";
 
-const CarouselcontentMemo = (props: any) => {
+interface Episode {
+  id: number;
+  series_id: number;
+  episode_number: number;
+  release_date: string;
+  title: string;
+  season_number: number;
+}
+
+interface EpisodesByDate {
+  [dateKey: string]: Episode[];
+}
+interface daysInMonth {
+  day: string;
+  month: string;
+  weekday: string;
+}
+interface CarouselContentMemoProps {
+  scheduleLookup: EpisodesByDate;
+  daysInMonth: daysInMonth[];
+  setTodayDate: React.Dispatch<React.SetStateAction<number>>;
+  todayDate: number;
+}
+
+const CarouselcontentMemo = (props: CarouselContentMemoProps) => {
   const { daysInMonth, scheduleLookup, setTodayDate, todayDate } = props;
+
   return (
     <>
       <CarouselContent className="gap-x-4 !h-20">
-        {daysInMonth.map((dayObj, index) => {
+        {daysInMonth.map((dayObj) => {
           const key = `${dayObj.day}-${dayObj.weekday}-${dayObj.month}`;
           const relatedEvents = scheduleLookup[key] || [];
-
-          console.log(relatedEvents, "relatedEvents");
 
           return (
             <CarouselItem key={key}>
               <CarouselItems
                 onClick={() => setTodayDate(Number(dayObj.day))}
                 days={dayObj}
-                events={[relatedEvents]}
+                events={relatedEvents}
                 bgcolor={
                   Number(dayObj.day) === todayDate
                     ? "bg-[#5a2e98]"

@@ -8,9 +8,17 @@ interface carouselProps {
   };
   bgcolor: string;
   onClick: () => void;
+  events: {
+    id: number;
+    series_id: number;
+    episode_number: number;
+    release_date: string;
+    title: string;
+    season_number: number;
+  }[];
 }
 const CarouselItems = (props: carouselProps) => {
-  const { days, bgcolor, onClick } = props;
+  const { days, bgcolor, onClick, events } = props;
   return (
     <CarouselItem
       className={`basis-1/4 text-white !pl-0 ${bgcolor}`}
