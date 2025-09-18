@@ -12,6 +12,7 @@ import { useEffect, useMemo, useState } from "react";
 import CarouselItems from "./carouselItem";
 import { UseScheduleInfo } from "@/app/api/apiHooks/useScheduleInfo";
 import CarouselcontentMemo from "./carouselcontentMemo";
+import ReleaseSchedule from "./releaseSchedule";
 
 const SplitCarousel = () => {
   const [carouselApi, setCarouselApi] = useState<CarouselApi | null>(null);
@@ -51,7 +52,7 @@ const SplitCarousel = () => {
   const scheduleLookup = useMemo(() => {
     if (!data?.data) return {};
 
-    return data.data.reduce((acc: Record<string, any[]>, obj: any) => {
+    return data?.data.reduce((acc: Record<string, any[]>, obj: any) => {
       const date = dayjs(obj.release_date);
       const key = `${date.date()}-${date.format("dddd")}-${date.format(
         "MMMM"
@@ -73,6 +74,8 @@ const SplitCarousel = () => {
         <CarouselPrevious className="!h-20 !rounded-none bg-[#303030] absolute left-0" />
         <CarouselNext className="!h-20 !rounded-none bg-[#303030] absolute right-0" />
       </Carousel>
+
+      <ReleaseSchedule />
     </div>
   );
 };

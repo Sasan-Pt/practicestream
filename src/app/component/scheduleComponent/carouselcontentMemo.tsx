@@ -31,7 +31,7 @@ const CarouselcontentMemo = (props: CarouselContentMemoProps) => {
 
   return (
     <>
-      <CarouselContent className="gap-x-4 !h-20">
+      <CarouselContent className="gap-x-4  w-[30%] p-4 mx-4">
         {daysInMonth.map((dayObj) => {
           const key = `${dayObj.day}-${dayObj.weekday}-${dayObj.month}`;
           const relatedEvents = scheduleLookup[key] || [];

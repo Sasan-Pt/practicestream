@@ -21,7 +21,7 @@ const CarouselItems = (props: carouselProps) => {
   const { days, bgcolor, onClick, events } = props;
   return (
     <CarouselItem
-      className={`basis-1/4 text-white !pl-0 ${bgcolor}`}
+      className={`basis-1/4 text-white !pl-0 ${bgcolor} `}
       key={`splitCarousel${days.day}`}
       onClick={onClick}
     >

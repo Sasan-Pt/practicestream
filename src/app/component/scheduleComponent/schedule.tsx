@@ -8,7 +8,6 @@ const Schedule = () => {
         Estimated Schedule
       </div>
       <SplitCarousel />
-      <ReleaseSchedule />
     </div>
   );
 };
